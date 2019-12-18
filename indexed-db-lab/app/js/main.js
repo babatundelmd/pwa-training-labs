@@ -23,30 +23,30 @@ var idbApp = (function () {
     return;
   }
 
-  var dbPromise = idb.open('couches-n-things', 1);
+  // var dbPromise = idb.open('couches-n-things', 1);
 
-  // var dbPromise = idb.open('couches-n-things', 2, (updradeDb) => {
-  //   switch (updradeDb.oldVersion) {
-  //     case 0:
-  //     // a placeholder case so that the switch block will 
-  //     // execute when the database is first created
-  //     // (oldVersion is 0)
+  var dbPromise = idb.open('couches-n-things', 2, (updradeDb) => {
+    switch (updradeDb.oldVersion) {
+      case 0:
+      // a placeholder case so that the switch block will 
+      // execute when the database is first created
+      // (oldVersion is 0)
 
-  //     case 1:
-  //       console.log('Creating the products object store');
-  //       updradeDb.createObjectStore('products', { keyPath: 'id' });
-  //     // TODO 4.1 - create 'name' index
+      case 1:
+        console.log('Creating the products object store');
+        updradeDb.createObjectStore('products', { keyPath: 'id' });
+      // TODO 4.1 - create 'name' index
 
-  //     // TODO 4.2 - create 'price' and 'description' indexes
+      // TODO 4.2 - create 'price' and 'description' indexes
 
-  //     // TODO 5.1 - create an 'orders' object store
-  //   }
-  // })
+      // TODO 5.1 - create an 'orders' object store
+    }
+  })
 
   function addProducts() {
 
     // TODO 3.3 - add objects to the products store
-    dbPromise.then((db) => {
+    dbPromise.then(function (db) {
       var tx = db.transaction('products', 'readwrite');
       var store = tx.objectStore('products');
       var items = [
