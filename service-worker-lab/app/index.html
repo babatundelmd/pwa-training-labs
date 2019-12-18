@@ -40,7 +40,7 @@ limitations under the License.
       window.addEventListener('load', () =>
       {
         navigator.serviceWorker.register('service-worker.js')
-          .then(registration => console.log('Service Worker is Registered', registration))
+          .then(registration => console.log('Service Worker with scope: ', registration.scope))
           .catch(err => console.log('Registration failed: ', err));
       });
     }
